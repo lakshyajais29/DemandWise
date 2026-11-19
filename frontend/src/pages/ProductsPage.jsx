@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import ProductTable from '../components/ProductTable';
-import ForecastChartPanel from '../components/ForecastChartPanel';
+import Dashboard from '../components/Dashboard';
 
 export default function ProductsPage({ onNavigate }) {
   const [selectedProduct, setSelectedProduct] = useState('85123A');
@@ -11,9 +11,12 @@ export default function ProductsPage({ onNavigate }) {
   };
 
   return (
-    <>
-      <ForecastChartPanel selectedProduct={selectedProduct} />
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
+      {/* Interactive Forecast Dashboard for selected product */}
+      <Dashboard defaultSku={selectedProduct} />
+
+      {/* Full Catalog Table */}
       <ProductTable onSelectProduct={handleSelectProduct} />
-    </>
+    </div>
   );
 }

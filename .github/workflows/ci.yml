@@ -19,15 +19,14 @@ jobs:
 
       - name: Install backend dependencies
         run: |
-          cd backend
-          pip install -r requirements.txt
+          pip install -r backend/requirements.txt
           pip install pytest httpx
 
       - name: Run tests
         run: pytest tests/ -v --tb=short
 
       - name: Build backend Docker image
-        run: docker build -t demandwise-backend ./backend
+        run: docker build -f backend/Dockerfile -t demandwise-backend .
 
       - name: Build frontend Docker image
         run: docker build -t demandwise-frontend ./frontend

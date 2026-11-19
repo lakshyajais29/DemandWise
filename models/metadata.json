@@ -1,0 +1,55 @@
+{
+  "horizons": {
+    "7": {
+      "model_file": "catboost_7d.cbm",
+      "best_iteration": 124,
+      "test_model_wape": 0.4301985866083278,
+      "test_baseline_wape": 0.4256435343094174
+    },
+    "14": {
+      "model_file": "catboost_14d.cbm",
+      "best_iteration": 278,
+      "test_model_wape": 0.3696381463430924,
+      "test_baseline_wape": 0.3668323705974314
+    },
+    "30": {
+      "model_file": "catboost_30d.cbm",
+      "best_iteration": 261,
+      "test_model_wape": 0.3095585191157306,
+      "test_baseline_wape": 0.34344218149509326
+    }
+  },
+  "features": [
+    "StockCode",
+    "dayofweek",
+    "day",
+    "month",
+    "quarter",
+    "year",
+    "dow_sin",
+    "dow_cos",
+    "doy_sin",
+    "doy_cos",
+    "mean_7",
+    "mean_14",
+    "mean_28",
+    "mean_56",
+    "mean_90",
+    "lag_7",
+    "lag_14",
+    "lag_28",
+    "lag_56",
+    "lag_90",
+    "median_28",
+    "std_28",
+    "zero_share_28",
+    "trend_7_vs_28"
+  ],
+  "categorical_features": [
+    "StockCode"
+  ],
+  "top_n": 30,
+  "min_sale_days": 100,
+  "frequency": "D",
+  "target_definition": "sum of next N calendar days gross positive units"
+}

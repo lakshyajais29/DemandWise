@@ -1,7 +1,25 @@
+# Multi-horizon CatBoost & FastAPI inference backend
 FROM python:3.11-slim
+
 WORKDIR /app
-COPY requirements.txt .
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY backend/requirements.txt ./requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
-COPY . .
+
+COPY backend/ ./backend/
+COPY models/ ./models/
+COPY data/processed/ ./data/processed/
+
+ENV MODEL_PATH=/app/models
+ENV PYTHONPATH=/app/backend
+ENV PYTHONUNBUFFERED=1
+
+WORKDIR /app/backend
+
 EXPOSE 8000
+
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]

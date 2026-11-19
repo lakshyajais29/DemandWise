@@ -2,19 +2,30 @@ version: '3.8'
 
 services:
   backend:
-    build: ./backend
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    container_name: demandwise-backend
     ports:
-      - '8000:8000'
+      - "8000:8000"
     volumes:
-      - ./backend:/app
+      - ./backend:/app/backend
+      - ./models:/app/models
+      - ./data/processed:/app/data/processed
     environment:
+      - MODEL_PATH=/app/models
       - PYTHONUNBUFFERED=1
+    restart: unless-stopped
 
   frontend:
-    build: ./frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: demandwise-frontend
     ports:
-      - '3000:80'
+      - "3000:80"
     depends_on:
       - backend
     environment:
       - REACT_APP_API_URL=http://localhost:8000
+    restart: unless-stopped
