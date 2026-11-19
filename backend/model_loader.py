@@ -2,7 +2,12 @@ import pickle
 import numpy as np
 from pathlib import Path
 
-MODEL_PATH = Path(__file__).parent / 'best_model.pkl'
+MODEL_PATH = (
+    Path(__file__).resolve().parent.parent
+    / 'models'
+    / 'mlflow_runs'
+    / 'best_model.pkl'
+)
 
 _model = None
 
