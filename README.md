@@ -278,7 +278,7 @@ pytest tests/ -v
 
 ---
 
-## 📊 Inventory Intelligence Rules
+## 📊 Inventory_Intelligence_Rules
 
 - **Low Stock:** Triggered when `current_stock < (total_predicted_demand * 0.5)`. Reorder recommendation: `total_predicted_demand - current_stock`.
 - **Overstock:** Triggered when `current_stock > (total_predicted_demand * 1.5)`. Highlights excess inventory.
